@@ -18,14 +18,35 @@
 ---
 
 ## 파일 구성
-|폴더 이름 |설명                         |
+|폴더 이름 |설명                         |
 |:--        |:--                          |
-|ch01       |1장에서 사용하는 소스 코드 |
+|ch01       |1장에서 사용하는 소스 코드 |
 |ch02       |2장에서 사용하는 소스 코드    |
 |...        |...                          |
 |ch08       |8장에서 사용하는 소스 코드    |
-|common     |공통으로 사용하는 소스 코드  |
-|dataset    |데이터셋용 소스 코드 |
+|common     |공통으로 사용하는 소스 코드  |
+|dataset    |데이터셋용 소스 코드 |
+|new_model_chat_bot |학습한 딥러닝 개념을 활용한 CIFAR-10 Cat/Dog CNN 및 챗봇 프로젝트 |
+
+## New Model Chat Bot
+『밑바닥부터 시작하는 딥러닝』에서 학습한 개념을 실제 이미지 분류 애플리케이션으로 확장하는 실습 프로젝트입니다.
+
+### Cat & Dog CNN
+- CIFAR-10에서 cat(3), dog(5) 클래스만 추출하여 이진 분류 데이터셋 구성
+- NumPy로 Convolution, ReLU, Pooling, Affine, SoftmaxWithLoss 및 역전파 직접 구현
+- 네트워크 구조: `Conv(16) → ReLU → Pool → Conv(32) → ReLU → Pool → Affine(2048→100) → ReLU → Affine(100→2)`
+- He initialization 및 Adam optimizer 적용
+- 2,000개 학습 데이터 baseline에서 전체 8,000개 학습 데이터로 확장하며 성능과 클래스 편향 비교
+- 직접 업로드한 이미지에 대해 Cat/Dog 추론이 가능하도록 확장
+
+### Application 확장 계획
+CNN 모델을 독립적인 이미지 판별 기능으로 완성한 뒤 다음 단계로 확장합니다.
+
+`Image → CNN → LLM → Gradio UI → Deployment`
+
+필요한 경우 외부 문서를 검색하여 답변에 활용하는 RAG(Retrieval-Augmented Generation)를 추가할 수 있습니다.
+
+- Notebook: [`new_model_chat_bot/cifar10.ipynb`](new_model_chat_bot/cifar10.ipynb)
 
 ## 주피터 노트북
 이 책의 코드는 주피터 노트북으로도 제공됩니다. 다음 링크를 클릭하면 구글 콜랩에서 노트북을 실행할 수 있습니다.
@@ -40,14 +61,12 @@
 | 7장 합성곱 신경망(CNN) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1SQyMbVbqNvmODy4_CIFlcFfgUH9R2oIt?usp=drive_link) |
 | 8장 딥러닝 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1GXNAB0hnlbBGtsmS0BnSmTavQLAYyz7d?usp=drive_link) |
 
-
 ## 요구사항
 소스 코드를 실행하려면 아래의 소프트웨어가 설치되어 있어야 합니다.
 
 * 파이썬 3.x
 * NumPy
 * Matplotlib
-
 
 ## 실행 방법 (리마스터판)
 어디서든 실행할 수 있습니다.
@@ -112,5 +131,5 @@ $ python train_nueralnet.py
 
 ## 라이선스
 
-이 저장소의 소스 코드는 [MIT 라이선스](http://www.opensource.org/licenses/MIT)를 따릅니다.
+이 저장소의 소스 코드는 [MIT 라이선스](http://www.opensource.org/licenses/MIT)를 따릅니다.
 상업적 목적으로도 자유롭게 이용하실 수 있습니다.
